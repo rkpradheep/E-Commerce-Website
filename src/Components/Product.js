@@ -157,7 +157,7 @@ function modify()
    '<h4>'+product.product_name+'</h4>'+
    '<h5>Price: ₹'+product.product_price+'</h5>'+
    ' <h5>Rating: '+product.product_ratings+'</h5>'+
-   ' <button id="'+product._id+'"style="margin-left:70px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
+   ' <button class="addBtn" id="'+product._id+'" style="all:unset;width:150px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
    '</div></div>'
     }
      
