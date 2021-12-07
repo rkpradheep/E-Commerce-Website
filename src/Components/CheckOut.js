@@ -2,7 +2,7 @@ import { getByDisplayValue } from "@testing-library/react";
 import { Component } from "react";
 import { Link,Redirect } from "react-router-dom";
 import styles from "../Styles/cart.module.css";
-
+import $ from "jquery";
 class CheckOut extends Component{
     constructor()
     {
@@ -25,7 +25,8 @@ class CheckOut extends Component{
         return <Redirect to="/" />
 
        
-        setTimeout(function(){Display()},100)
+        $(document).ready(()=>{Display()} )
+
         return(
 <div className={styles.body}>
  <div style={{marginTop:"300px"}} id="outer">

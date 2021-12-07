@@ -6,7 +6,8 @@ import $ from "jquery";
 class Cart extends Component
 {
     render(){
-     setTimeout(function(){pp()},100)
+     $(document).ready(()=>{pp()} )
+      //pp();
         return(
 <div className={styles.body} style={{width:"100%"}}>
 <div className={styles.outer}>

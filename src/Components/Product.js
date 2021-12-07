@@ -25,14 +25,15 @@ class Product extends Component
   }
 
  render(){
-    
+    if(!this.state.GoToCart)
+    $(document).ready(()=>{pp();getCartArr()} )
 
     if(!this.state.isLoggedIn || localStorage.getItem("name")=="")
      return <Redirect to="/"/>;
     if(this.state.GoToCart)
     return <Redirect to="/cart"/>;
-    setTimeout(function(){pp();getCartArr();},100);
-
+    //setTimeout(function(){pp();getCartArr();},0);
+     
  return(
   
 <div className={styles.body}>
@@ -73,7 +74,7 @@ class Product extends Component
 
         <h2>Wait while we load the Products !!</h2>
     </div>
-
+   
 </div>
 
  );
