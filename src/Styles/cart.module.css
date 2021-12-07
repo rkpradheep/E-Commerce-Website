@@ -1,6 +1,14 @@
 .body{
     background-color: #ede2fa;
     text-align: center;
+    width:100%;
+    margin:0px;
+    position: absolute;
+    justify-content: center;
+     height:100%;
+    margin-left: -8px;
+    min-width: 600px;
+    min-height: 1150px;
 }
 .button{
     padding: 5px;
@@ -22,6 +30,7 @@
     color: #ffff;
 }
 table {
+    margin-top: 100px;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;

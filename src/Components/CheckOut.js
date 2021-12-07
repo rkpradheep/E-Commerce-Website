@@ -25,10 +25,10 @@ class CheckOut extends Component{
         return <Redirect to="/" />
 
        
-        setTimeout(function(){Display()},500)
+        setTimeout(function(){Display()},100)
         return(
 <div className={styles.body}>
- <div className={styles.outer} id="outer">
+ <div style={{marginTop:"300px"}} id="outer">
  </div>
 <button className={styles.button} style={{width:"200px"}} onClick={this.Exit} id="home">Go to home</button>
 </div>

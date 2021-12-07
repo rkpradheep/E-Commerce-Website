@@ -27,7 +27,7 @@ class Product extends Component
  render(){
     
 
-    if(!this.state.isLoggedIn && localStorage.getItem("name")=="")
+    if(!this.state.isLoggedIn || localStorage.getItem("name")=="")
      return <Redirect to="/"/>;
     if(this.state.GoToCart)
     return <Redirect to="/cart"/>;
@@ -38,8 +38,8 @@ class Product extends Component
 <div className={styles.body}>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossOrigin="anonymous"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="../Styles/product.module.css"/>
-<a onClick={this.LogOut} style={{marginLeft:"60%",textDecoration:"none"}}>
+
+<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"55%",textDecoration:"none"}}>
           <button style={{marginLeft:"90%",height:"30px",width:"100px",backgroundColor:"skyblue",color:"white",fontWeight:"bold",borderRadius:"5px"}} onClick={this.LogOut}>Log out</button>
 		  </a>
         
@@ -61,7 +61,7 @@ class Product extends Component
 
                     name="search" id="search" onInput={modify} autoComplete="off"/> 
 
-                <a id="cartBtn" href="javascript:void(0)" onClick={this.GoToCartF} style={{marginTop:"-53px",marginLeft:"25%",position:"absolute"}}>
+                <a id="cartBtn" href="javascript:void(0)" onClick={this.GoToCartF} style={{marginTop:"-53px",marginLeft:"350px",position:"absolute"}}>
                 <img src={cart} height="50" style={{display:"inline-block"}}/>
                 </a> 
 
@@ -156,7 +156,7 @@ function modify()
    '<h4>'+product.product_name+'</h4>'+
    '<h5>Price: ₹'+product.product_price+'</h5>'+
    ' <h5>Rating: '+product.product_ratings+'</h5>'+
-   ' <button class="addBtn" id="'+product._id+'"style="margin-left:70px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
+   ' <button id="'+product._id+'"style="margin-left:70px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
    '</div></div>'
     }
      
@@ -176,13 +176,13 @@ function pp(){
 
        productsEl.innerHTML = productsArr.map(product=>{
        
-       return '<div class="product" style="  display: flex;flex-direction: column; justify-content: space-between; text-align: center; background-color: #CCCCC6;border-radius: 15px; margin-bottom: 25px;margin-right: 5px; margin-left: 5px; padding: 15px;">'+
+       return '<div class="product" style="display: flex;flex-direction: column; justify-content: space-between; text-align: center; background-color: #CCCCC6;border-radius: 15px; margin-bottom: 25px;margin-right: 5px;  padding: 15px;">'+
        '<div class="product-info">'+
        '<img src="'+product.product_image+'" alt="product-image" height="200" width="200">'+
        '<h4>'+product.product_name+'</h4>'+
        '<h5>Price: ₹'+product.product_price+'</h5>'+
        ' <h5>Rating: '+product.product_ratings+'</h5>'+
-       ' <button id="'+product._id+'" class="addBtn" style="margin-left:60px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
+       ' <button class="addBtn" id="'+product._id+'" style="all:unset;width:150px;padding: 5px;border: 1px solid #450264;color: #efd8fa;background: green;border-radius: 5px;font-size: large;cursor: pointer;text-decoration:none;">add to cart</button>'+
        '</div></div>'
        
        

@@ -1,9 +1,13 @@
 .body{
+    
     display: flex;
     justify-content: center;
     flex-direction: column;
    overflow-x: hidden; 
+   width: 100%;
+   min-width: 550px;
    background: linear-gradient(to bottom right, #274B74 0%, #8233C5 50%, #E963FD 100%);
+   
 }
 .addBtn{
     padding: 5px;
@@ -14,6 +18,7 @@
     font-size: large;
     cursor: pointer;
     text-decoration:none;
+    
 }
 .addBtn:hover{
     color: #ffff;
@@ -24,6 +29,7 @@ a{
     margin: 50px;
 }
 .products{
+    
     display: grid;
    grid-template-columns: repeat(4,1fr);
    -ms-grid-column-align: center;

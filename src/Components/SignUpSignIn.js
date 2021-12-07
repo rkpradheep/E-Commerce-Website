@@ -13,7 +13,7 @@ class SignUpSignIn extends Component
 	 }
 	 
 
-		     NewUser= (e)=>{
+		     NewUser= ()=>{
 				var n=document.getElementById("name").value;
 				var p=document.getElementById("password").value;
 				var e=document.getElementById("email").value;
@@ -100,12 +100,12 @@ class SignUpSignIn extends Component
 			 
 
     render(){
-		if (this.state.isLoggedIn || localStorage.getItem("name")!="") 
+		if (this.state.isLoggedIn) 
 			return <Redirect to="/product"/>;
        
  return(
-	 
-<div className={styles.div}>
+	<div className={styles.div}>
+
 	<link rel="stylesheet" href="../Styles/SignUpSignIn.module.css"/>
     <div className={styles.main}>  	
 

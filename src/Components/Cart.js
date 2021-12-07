@@ -8,7 +8,7 @@ class Cart extends Component
     render(){
      setTimeout(function(){pp()},100)
         return(
-<div className={styles.body}>
+<div className={styles.body} style={{width:"100%"}}>
 <div className={styles.outer}>
 <table style={{width:"100%"}} id="cartList">
    
@@ -68,7 +68,7 @@ const displayCart = () => {
             <td><h4>${product.name}</h4></td>
             <td><h5>${product.price}</h5></td>
             <td>${product.qty}</td>
-            <td><button id="${product._id}" class="removeBtn">Remove</button></td>
+            <td><button style="width:90px" id="${product._id}" class="removeBtn">Remove</button></td>
         </tr>
     `)
     .join('');
