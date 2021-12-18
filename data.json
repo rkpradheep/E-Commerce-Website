@@ -1,0 +1,151 @@
+{
+    "data": [
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/mobilephone_300.png",
+            "_id": "1",
+            "product_name": "Risk-free Mobile Phone",
+            "product_price": 293,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/computertable_300.png",
+            "_id": "2",
+            "product_name": "Magic Computer Table",
+            "product_price": 260,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/laptop_300.png",
+            "_id": "3",
+            "product_name": "Plain Laptop",
+            "product_price": 240,
+            "product_ratings": 0
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/desktop_300.png",
+            "_id": "4",
+            "product_name": "Ergonomic Desktop",
+            "product_price": 808,
+            "product_ratings": 4
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/securitycamera_300.png",
+            "_id": "5",
+            "product_name": "Pristine Security Camera",
+            "product_price": 487,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/actioncamera_300.png",
+            "_id": "6",
+            "product_name": "Intelligent Action Camera",
+            "product_price": 351,
+            "product_ratings": 0
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/gamingconsole_300.png",
+            "_id": "7",
+            "product_name": "Staple Gaming Console",
+            "product_price": 5,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/phonecharger_300.png",
+            "_id": "8",
+            "product_name": "Powerful Phone Charger",
+            "product_price": 309,
+            "product_ratings": 0
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/drone_300.png",
+            "_id": "9",
+            "product_name": "Unbranded Drone",
+            "product_price": 528,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/earphone_300.png",
+            "_id": "10",
+            "product_name": "Safe and effective Earphone",
+            "product_price": 536,
+            "product_ratings": 0
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/headset_300.png",
+            "_id": "11",
+            "product_name": "Fresh Headset",
+            "product_price": 426,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/bluetoothspeaker_300.png",
+            "_id": "12",
+            "product_name": "Promise Bluetooth Speaker",
+            "product_price": 48,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/smartwatch_300.png",
+            "_id": "13",
+            "product_name": "Simple Smart Watch",
+            "product_price": 285,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/basicphone_300.png",
+            "_id": "14",
+            "product_name": "Old-fashioned Basic Phone",
+            "product_price": 471,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/nintendoswitch_300.png",
+            "_id": "15",
+            "product_name": "Licensed Nintendo Switch",
+            "product_price": 766,
+            "product_ratings": 5
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/powerbank_300.png",
+            "_id": "16",
+            "product_name": "Limited Power Bank",
+            "product_price": 710,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/gadgets/gameboy_300.png",
+            "_id": "17",
+            "product_name": "Authentic Gameboy",
+            "product_price": 214,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/appliances/vacuumcleaner_300.png",
+            "_id": "18",
+            "product_name": "Intelligent Vacuum Cleaner",
+            "product_price": 264,
+            "product_ratings": 2
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/appliances/washingmachine_300.png",
+            "_id": "19",
+            "product_name": "Handmade Washing Machine",
+            "product_price": 96,
+            "product_ratings": 3
+        },
+        {
+            "product_image": "https://dummyproducts-api.herokuapp.com/appliances/dryer_300.png",
+            "_id": "20",
+            "product_name": "Amazing Dryer",
+            "product_price": 454,
+            "product_ratings": 1
+        },
+        {
+            "product_image": "https://firebasestorage.googleapis.com/v0/b/file-b23ef.appspot.com/o/news2.jpg?alt=media&token=0bc1514b-ed0d-44f5-b9da-d97e36f7de50",
+            "_id": "21",
+            "product_name": "Pradheep",
+            "product_price": "100",
+            "product_ratings": "10"
+        }
+    ]
+}

@@ -13,7 +13,8 @@ class CheckOut extends Component{
     }
     Exit=(e)=>{
     
-        localStorage.setItem("name","");
+        window.localStorage.clear()
+
         this.setState({LogOut:true});
         
     };

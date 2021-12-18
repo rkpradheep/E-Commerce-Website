@@ -1,15 +1,17 @@
 .body{
-    
+    position: absolute;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
-    flex-direction: column;
-   overflow-x: hidden; 
-   width: 100%;
-   min-width: 550px;
+    overflow-x: hidden; 
+     width: 100%;
+     min-width: 500px;
+     flex-direction: column;
    background: linear-gradient(to bottom right, #274B74 0%, #8233C5 50%, #E963FD 100%);
-   
+     zoom:80%;
+     
 }
-.addBtn{
+.button{
     padding: 5px;
     border: 1px solid #450264;
     color: #efd8fa;
@@ -20,7 +22,7 @@
     text-decoration:none;
     
 }
-.addBtn:hover{
+.button:hover{
     color: #ffff;
 }
 
@@ -30,7 +32,7 @@ a{
 }
 .products{
     
-    display: grid;
+   display: grid;
    grid-template-columns: repeat(4,1fr);
    -ms-grid-column-align: center;
 }

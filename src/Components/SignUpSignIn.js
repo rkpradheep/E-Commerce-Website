@@ -2,12 +2,14 @@ import { Component } from "react";
 import { Link ,Redirect} from "react-router-dom";
 import styles from "../Styles/SignUpSignIn.module.css";
 import firebase from "../firebase";
+import Navigation from "./Navigation";
 class SignUpSignIn extends Component
 {
 	constructor()
 	{super();
 		this.state = {
 			isLoggedIn: false,
+			admin:false
 		  };
 	
 	 }
@@ -17,10 +19,20 @@ class SignUpSignIn extends Component
 				var n=document.getElementById("name").value;
 				var p=document.getElementById("password").value;
 				var e=document.getElementById("email").value;
-				    
+				var c=document.getElementById("cpassword").value;
+
+			  if(p==""||n=="" || e=="" || c=="")
+			    {  alert("Please fill all the required field")
+					return ;
+				}
+				else if(c!=p)
+				{
+					alert("Given password and confirm password don't match")
+					return ;
+				}
 				var flag=true;
 			      
-					firebase.ref("/").child("Users").once("value",(snapshot)=>{
+					firebase.database().ref("/").child("Users").once("value",(snapshot)=>{
 						snapshot.forEach((data)=>{
 							var val=data.val();
 							if(val.email==e){
@@ -33,11 +45,12 @@ class SignUpSignIn extends Component
 					}).then(()=>{
 						if(flag)
 						{
-							var loginref = firebase.ref("/").child("Users").push({
+							var loginref = firebase.database().ref("/").child("Users").push({
 								name:n,
 								email:e,
 								password:p,
 								}).catch(alert);
+								window.localStorage.clear();
 								localStorage.setItem("name",n);
 								this.setState({isLoggedIn:true});
 						}
@@ -59,9 +72,17 @@ class SignUpSignIn extends Component
 			    var n;
 				var p=document.getElementById("PASSWORD").value;
 				var e=document.getElementById("EMAIL").value;
+				if(p==""||e=="")
+			    {  alert("Please fill all the required field")
+					return ;
+				}
 				var flag=false;
+				if(e=="admin@gmail.com" && p=="admin"){
+				  this.setState({admin:true})
+				}
+				else{
 			      
-					firebase.ref("/").child("Users").once("value",(snapshot)=>{
+					firebase.database().ref("/").child("Users").once("value",(snapshot)=>{
 						snapshot.forEach((data)=>{
 							var val=data.val();
 							if(val.email==e && val.password==p){
@@ -74,19 +95,20 @@ class SignUpSignIn extends Component
 						});
 					}).then(()=>{
 						if(flag)
-						{       
+						{       window.localStorage.clear();
+
 								localStorage.setItem("name",n);
 								this.setState({isLoggedIn:true});
 						}
 						else{
 							document.getElementById("PASSWORD").value="";
 							document.getElementById("EMAIL").value="";
-						alert("Invalid email id or password!");
+					     	alert("Invalid email id or password!");
 						}
 
 					});
 						
-					
+				}
 
 					
 
@@ -100,35 +122,42 @@ class SignUpSignIn extends Component
 			 
 
     render(){
-		if (this.state.isLoggedIn) 
+		if (this.state.isLoggedIn || localStorage.getItem("name")!=null) 
 			return <Redirect to="/product"/>;
+			if(this.state.admin)
+			return <Redirect to="/admin"/>;
+
        
  return(
-	<div className={styles.div}>
+	 <div>
+		<Navigation/>
 
-	<link rel="stylesheet" href="../Styles/SignUpSignIn.module.css"/>
+	<div className={styles.div}>
     <div className={styles.main}>  	
 
 			<div className={styles.signup}>
-				<form>
-					<label htmlFor="chk" aria-hidden="true" onClick={call} >Sign up</label>
-					<input type="text"  id="name" placeholder="User name" Required=""/>
-					<input type="email" id="email" placeholder="Email" Required=""/>
-					<input type="password" id="password" placeholder="Password" Required=""/>
-					<button type="button" onClick={this.NewUser} >Sign up</button>
+				<form autoComplete="off" style={{all:"unset"}}>
+					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call} >Sign up</label>
+					<input className={styles.input} type="text"  id="name" placeholder="User name" Required=""/><br></br>
+					<input className={styles.input} type="email" id="email" placeholder="Email" Required=""/><br/>
+					<input className={styles.input} type="password" id="password" placeholder="Password" Required=""/><br/>
+					<input className={styles.input} type="password" id="cpassword" placeholder="Confirm Password" Required=""/><br/>
+					<button className={styles.button} type="button" onClick={this.NewUser} >Sign up</button>
 				</form>
 			</div>
 
 			<div className={styles.login} id="loginn">
-			      <form>
-					<label htmlFor="chk" aria-hidden="true" onClick={call}>Login</label>
-					<input type="email" name="email" id="EMAIL" placeholder="Email" Required=""/>
-					<input type="password" id="PASSWORD" placeholder="Password" Required=""/>
-					<button type="button" onClick={this.IsValidUser}>Login</button>
+			      <form autoComplete="off" style={{all:"unset"}}>
+					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call}>Login</label>
+					<input className={styles.input} type="email" name="email" id="EMAIL" placeholder="Email" Required=""/><br/>
+					<input className={styles.input} type="password" id="PASSWORD" placeholder="Password" Required=""/><br/>
+					<button className={styles.button} type="button" onClick={this.IsValidUser}>Login</button><br/>
 					</form>
 			</div>
 	</div>
    </div>
+   </div>
+
  );
     };
    
@@ -136,12 +165,12 @@ class SignUpSignIn extends Component
     
 }
 function call() {
-	if(  document.getElementById("loginn").style.transform=="translateY(-500px)"
+	if(  document.getElementById("loginn").style.transform=="translateY(-600px)"
 	)
 	document.getElementById("loginn").style.transform="translateY(-180px)";
 
    else
-   document.getElementById("loginn").style.transform="translateY(-500px)";
+   document.getElementById("loginn").style.transform="translateY(-600px)";
 
 }
 

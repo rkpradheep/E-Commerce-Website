@@ -1,44 +1,69 @@
 
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styles from "../Styles/cart.module.css";
 import $ from "jquery";
-class Cart extends Component
-{
-    render(){
-     $(document).ready(()=>{pp()} )
-      //pp();
-        return(
-<div className={styles.body} style={{width:"100%"}}>
-<div className={styles.outer}>
-<table style={{width:"100%"}} id="cartList">
-   
-</table>
-<h3 id="total"></h3>
-<Link to="/checkout" style={{textDecoration:"none"}}>
-<button className={styles.btn} style={{width:"100px",marginLeft:"47%"}}>Checkout</button>
-</Link>
-<Link to="/product" style={{textDecoration:"none"}}>
-<button className={styles.btn} style={{width:"100px",marginLeft:"47%"}}>Go Back</button>
-</Link>
-</div>
-</div>
-);
-};
-}
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Load from './Load.js';
+toast.configure()
 var cartListEl = null;
 var totalEl = null;
 var checkoutEl = null;
-
 var products = [];
-function pp()
+
+class Cart extends Component
+{
+ 
+    constructor()
+    {
+    super()
+    this.state={
+    checkout:false,
+    total:-1,
+    isLoading:false
+    }
+   
+}
+     handleToken=(token)=>{
+        var TOTAL=this.state.total
+        this.setState({isLoading:true})
+        handleToken(token).then(()=>{
+            this.setState({isLoading:false})
+            setTimeout(()=>{
+            this.setState({checkout:true})},3000)})
+        async function handleToken(token) {
+            const product ={
+                price:TOTAL,
+              }
+            const response = await axios.post(
+     "https://0kp4s.sse.codesandbox.io/checkout", {token,product}
+            );
+
+            const { status } = response.data;
+            console.log("Response:", response.data);
+            
+
+            if (status === "success") {
+              toast("Success! Check email for details", { type: "success" });
+            } else {
+              toast("Something went wrong", { type: "error" });
+            }
+        
+          }
+      
+    }
+    pp=()=>
 {
 
 cartListEl = document.getElementById('cartList');
  totalEl = document.getElementById('total');
- getProducts();
+ this.getProducts();
 }
-const getProducts = () => {
+    getProducts = () => {
+    
     const temp = localStorage.getItem('cartArr');
     const cartArr = JSON.parse(temp);
     if (cartArr === null || cartArr === undefined) {
@@ -46,13 +71,15 @@ const getProducts = () => {
     } else {
         products = cartArr;
         // console.log(products);
-        displayCart();
-        calculateCartTotal();
+        this.displayCart();
+        this.calculateCartTotal();
     }
 };
 
 // display cart details
-const displayCart = () => {
+  displayCart = () => {
+    cartListEl = document.getElementById('cartList');
+  
     cartListEl.innerHTML = `
         <tr>
             <th>Product</th>
@@ -69,55 +96,105 @@ const displayCart = () => {
             <td><h4>${product.name}</h4></td>
             <td><h5>${product.price}</h5></td>
             <td>${product.qty}</td>
-            <td><button style="width:90px" id="${product._id}" class="removeBtn">Remove</button></td>
+            <td><button class="removeBtn" style="width:90px; border: 1px solid #640207;color: #efd8fa;
+
+            background: #b6063b;" id="${product._id}" onMouseOut="this.style.backgroundColor='#b6063b'" onMouseOver="this.style.backgroundColor='purple'">Remove</button></td>
         </tr>
     `)
     .join('');
 
     // enable remove item button
-    $(".removeBtn").on('click', deleteFromCart);
+   $(".removeBtn").on('click',this.deleteFromCart);
+  
 };
 
 // delete item from cart
-function deleteFromCart(){
-    var currId = this.id;
+   deleteFromCart=(e)=>{
+    var currId = e.currentTarget.id;
     // update the cartArr
     for (const i in products){
         if (products[i]._id === currId){
+            
             if(products[i].qty > 1){
                 products[i].qty -= 1;
+                products[i].stock += 1;
             }else{
+                products[i].stock += 1;
                 products.splice(i,1);
             }
         }
     }
-    updateInLocalStorage();
-    getProducts();
+    this.updateInLocalStorage();
+    this.getProducts();
 }
 
 // update cart in local storage
-function updateInLocalStorage(){
-    localStorage.setItem('cartArr', JSON.stringify(products));
+   updateInLocalStorage=()=>{
+    localStorage.setItem('cartArr', JSON.stringify(products,null,4));
 }
 
 // calculate cart total
-function calculateCartTotal(){
+   calculateCartTotal=()=>{
     let cartTotal = 0;
     for (const product of products){
         let currTotal = product.qty * product.price;
         cartTotal += currTotal; 
     }
-    updateCartTotal(cartTotal);
+    this.updateCartTotal(cartTotal);
 }
 
 // updates cart total in DOM and local storage
-function updateCartTotal(cartTotal){
-    totalEl.innerHTML = ` TOTAL : $ ${cartTotal}`;
+    updateCartTotal=(cartTotal)=>{
+    if(cartTotal!==this.state.total)
+     this.setState({total:cartTotal})
+    totalEl.innerHTML = ` TOTAL : ₹ ${cartTotal}`;
     localStorage.setItem('cartTotal', cartTotal);
 }
 
-// checkout function
-function checkout(){
-    window.location.href = "./checkout.html";
+
+    render(){
+     
+        if(this.state.checkout)
+        return <Redirect to="/checkout" />
+     $(document).ready(()=>{this.pp()} )
+        return(
+
+<div className={styles.body} style={{width:"100%"}}>
+{
+       (this.state.isLoading)?
+       <Load/>:null
+      
 }
+<div className={styles.outer}>
+<table style={{width:"100%"}} id="cartList">
+   
+</table><br/>
+<h3 id="total"></h3>
+{/*<button className={styles.btn} style={{width:"100px",marginLeft:"47%"}}>Checkout</button>*/}
+<br/>
+<StripeCheckout style={{width:"160px",margin:"auto"}}
+autoComplete="off"
+stripeKey="pk_test_51K6xJJSFUjObRNHM2n7HVmBh0wKcVenmU5Nf8dugDOP0o4m0KvtxRRstpPQZ8yOpnbU25bmxUjplLAql3XYZ3AQn00yweQixue"
+billingAddress
+shippingAddress
+currency="INR"
+token={this.handleToken}
+amount={this.state.total*100}
+/>
+<br></br><br/>
+<Link to="/product" style={{textDecoration:"none"}}>
+<button className={styles.btn} style={{width:"100px",margin:"auto"}}>Go Back</button>
+</Link>
+
+</div>
+</div>
+);
+};
+
+
+}
+
+
+// checkout function
+
 export default Cart;

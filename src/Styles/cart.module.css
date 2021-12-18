@@ -6,9 +6,11 @@
     position: absolute;
     justify-content: center;
      height:100%;
-    margin-left: -8px;
+    margin-left: 0px;
     min-width: 600px;
-    min-height: 1150px;
+    min-height: 1250px;
+    zoom:65%
+
 }
 .button{
     padding: 5px;
@@ -118,7 +120,7 @@ h2,h3{
     margin: 10px 0;
     border: none;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 17px;
     }
