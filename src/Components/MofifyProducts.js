@@ -5,7 +5,9 @@ import firebase from "../firebase";
 import $ from "jquery";
 import Navigation from "./Navigation";
 import Load from "./Load";
+import {toast} from 'react-toastify'
 var productsArr=null;
+toast.configure()
 class MofifyProducts extends Component {
 
  
@@ -27,7 +29,7 @@ class MofifyProducts extends Component {
                     </div>
 <br/><br/>
 <div className={styles.products} id="products">
-<div style={{margin:"0 0px 1000px 0",marginTop:"600px"}}>
+<div style={{margin:"0 0px 1000px 0",marginTop:"300px"}}>
 <Load/>
 </div>
 </div>
@@ -107,7 +109,7 @@ class MofifyProducts extends Component {
     firebase.database().ref("/").child("data").orderByChild("_id").equalTo(ID.currentTarget.id).once("value",(snapshot)=>{
         snapshot.forEach(e=>{ 
         firebase.database().ref("/").child("data/"+e.key).remove().then(()=>{
-            alert("Successfully deleted")
+            toast("Successfully deleted",{type:"success"})
             this.setState({reload:true})})
         });
     });
@@ -135,7 +137,7 @@ class MofifyProducts extends Component {
             product_stock:stock
              }
        firebase.database().ref("/").child("data/"+e.key).set(product).then(()=>{
-           alert("Successfully updated")
+           toast("Successfully updated",{type:"success"})
            this.setState({reload:true});
         
         })

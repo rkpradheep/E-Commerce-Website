@@ -13,8 +13,8 @@ class Navigation extends Component{
 	}
 render()
 {
-	if(this.state.GoToAdmin)
-	  return <Redirect to="/admin"/>
+	if(this.state.GoToAdmin){
+	  return <Redirect to="/admin"/>}
 
 return (
 	
@@ -26,6 +26,8 @@ return (
 			 <Nav.Link as={Link} to="/" style={{margin:"1px",margin:"auto"}}>Home</Nav.Link>
 			  <Nav.Link as={Link} to="/product" style={{margin:"1px",margin:"auto"}}>Purchase</Nav.Link>
 			  <Nav.Link style={{margin:"1px",margin:"auto"}} onClick={()=>{
+				  if(window.location.pathname==='/admin')
+				  return
 				if(localStorage.getItem("admin")){
 				 this.setState({"GoToAdmin":true})
 				   }

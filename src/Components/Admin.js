@@ -4,13 +4,15 @@ import styles from "../Styles/admin.module.css";
 import { Redirect } from "react-router-dom";
 import logoutIcon from "../logout.png"
 import Navigation from "./Navigation";
+import Load from "./Load";
 class Admin extends Component{
   constructor()
   {
     super()
     this.state={
       modify:false,
-      isLoggedIn:true
+      isLoggedIn:true,
+      isLoad:false
     }
   }
   LogOut=(e)=>{
@@ -42,10 +44,10 @@ class Admin extends Component{
    if(myfile!=null)
    {
   document.getElementById("progress").style.display="block";	
-   
+  document.getElementById("add").style.display="none";	
+   this.setState({isLoad:true})
    fname=myfile.name;
    var storageRef = firebase.storage().ref();
-
    var metadata = {
    contentType:myfile.type,
    };
@@ -92,14 +94,17 @@ class Admin extends Component{
         
     }  
     render()
-    { if(!this.state.isLoggedIn)
+    {
+      
+      if(!this.state.isLoggedIn)
         return <Redirect to="/"/>;
       if(this.state.modify)
         return <Redirect to="/modifyproducts"/>
         return(
           
         <div>
-                             <Navigation/>
+          {(this.state.isLoad)?<Load/>:null}
+         <Navigation/>
 
         
             <div className={styles.body}>
@@ -140,9 +145,9 @@ class Admin extends Component{
   <label htmlFor="product_image" className={styles.placeholder} id="pH" style={{marginLeft:"80px"}}>Product image</label>
    
    </div>
- <input type="submit" className={styles.submit} onClick={this.AddProduct}style={{marginTop:"3%"}} value="ADD"/>
+ <input type="submit" id="add" className={styles.submit} onClick={this.AddProduct}style={{marginTop:"3%"}} value="ADD"/>
 
-<progress id="progress" value="0" max="100" style={{position:"absolute",marginTop:"0%",marginLeft:"65px",display:"none"}}/>
+<progress id="progress" value="0" max="100" style={{marginTop:"10%",margin:"auto",display:"none"}}/>
 </form>
 </div>
 

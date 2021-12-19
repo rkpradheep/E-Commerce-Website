@@ -3,10 +3,10 @@ import ReactLoading from "react-loading";
 
 export default function Load() {
 return (
-	<div style={{position:"absolute",left:"45%",transform: "translateX(50%)",top:"20%",transform:"translateY(20%)",zIndex:"1"}}>
+	<div style={{position:"absolute",left:"40%",transform: "translateX(40%)",top:"30%",transform:"translateY(30%)",zIndex:"1"}}>
 	<ReactLoading
-		type="spinningBubbles"
-		color="#0000FF"
+		type="spokes"
+		color="white"
 		height={100}
 		width={100}
 	/>

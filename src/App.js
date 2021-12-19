@@ -7,12 +7,12 @@ import CheckOut from './Components/CheckOut';
 import Admin from './Components/Admin';
 import MofifyProducts from './Components/MofifyProducts';
 import Home from './Components/Home';
-import Navigation from './Components/Navigation.js';
 import React, { Component} from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 class App extends Component {
   render(){
   return (
+    
    <Router>
      <Switch>
      <Route exact path="/signup" component={SignUpSignIn}/>

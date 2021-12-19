@@ -11,8 +11,9 @@
 }
 
 .H{
-    height:70vh;
+    height:auto;
     width: 70vw;
+    max-height: 60vh;
 }
 .main
 {
