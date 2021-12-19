@@ -1,14 +1,14 @@
 import Navigation from "./Navigation";
 import { Carousel } from "react-bootstrap";
 import styles from "../Styles/home.module.css";
-import bg from "../bg.jpg"
+import bg from "../tiny.png"
 const Home=()=>{
 return( 
   <div>
     <div className={styles.main}>    
              <Navigation/>
     <br/><br/><br/>
-             <div style={{width:"75px",backgroundSize:"cover",height:"100px",float:"right",backgroundRepeat:"no-repeat",backgroundImage:"url('https://images.unsplash.com/photo-1581557991964-125469da3b8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHRveXN8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60')"}}>
+             <div style={{width:"100px",backgroundSize:"cover",height:"150px",float:"right",backgroundRepeat:"no-repeat",backgroundImage:`url(${bg})`}}>
 </div>
              <div className={styles.c1}>
 <Carousel >
