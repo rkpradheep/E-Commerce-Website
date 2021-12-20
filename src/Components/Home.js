@@ -2,7 +2,7 @@ import Navigation from "./Navigation";
 import { Carousel } from "react-bootstrap";
 import styles from "../Styles/home.module.css";
 import bg from "../tiny.png"
-const Home=(e)=>{
+const Home=()=>{
 return( 
   <div> 
     <div className={styles.main}>    
