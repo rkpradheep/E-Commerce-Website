@@ -96,8 +96,7 @@ class SignUpSignIn extends Component
 					}).then(()=>{
 						if(flag)
 						{       window.localStorage.clear();
-
-								alert(1)
+							   localStorage.setItem("name",n);
 								this.setState({isLoggedIn:true});
 						}
 						else{
@@ -122,8 +121,9 @@ class SignUpSignIn extends Component
 			 
 
     render(){
-		if (this.state.isLoggedIn || localStorage.getItem("name")!=null) 
+		if (this.state.isLoggedIn || localStorage.getItem("name")!=null){ 
 			return <Redirect to="/product"/>;
+		}
 			if(this.state.admin)
 			return <Redirect to="/admin"/>;
 
