@@ -97,7 +97,7 @@ class SignUpSignIn extends Component
 						if(flag)
 						{       window.localStorage.clear();
 
-								localStorage.setItem("name",n);
+								alert(1)
 								this.setState({isLoggedIn:true});
 						}
 						else{

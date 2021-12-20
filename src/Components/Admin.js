@@ -108,7 +108,7 @@ class Admin extends Component{
 
         
             <div className={styles.body}>
-<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute"}}>
+<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"2"}}>
 <img src={logoutIcon} height={30} width={50} style={{borderRadius:"10px"}} />
 		  </a>
     <button className={styles.submit} onClick={this.Modify}style={{position:"absolute",marginTop:"-590px",borderRadius:"10px",height:"30px",width:"70px",marginLeft:"250px",zIndex:100}}>Modify</button>

@@ -35,3 +35,12 @@
       margin-left: 10px;
     
 } 
+.file
+  {
+    
+margin-top:0px;width: 180px;padding:50px 0 0 0;height: 20px;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;box-sizing: border-box;border-radius: 20px;background-size: 30px 30px; background-color: #ddddd7; display: inline-block;margin-left: 10px;cursor:pointer
+       
+      
+     
+  }
+  
