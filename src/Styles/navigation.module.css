@@ -1,0 +1,13 @@
+
+
+.Zoom{
+z-index: 1;
+zoom:110%;
+}
+
+@media (min-height:1000px) {
+    
+    .Zoom{
+    zoom:220%;
+    }
+}

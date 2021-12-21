@@ -72,3 +72,9 @@ a{
     margin-left: 5px;
     padding: 15px;
 }
+
+@media (min-height:1000px ){
+    .body{
+      zoom:100%;
+    }   
+  }

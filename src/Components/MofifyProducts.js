@@ -66,6 +66,7 @@ class MofifyProducts extends Component {
          Ref.on("value", (snapshot) => {
             productsArr = snapshot.val();
        var productsEl = document.getElementById('products');
+       if(productsEl!==null)
          productsEl.innerHTML = productsArr.map(product=>{
          
          return '<div  style="display:flex; justify-content: center; text-align: center; background-color: #CCCCC6;border-radius: 15px; margin-bottom: 25px;margin-right: 5px;height:550px ">'+
@@ -100,6 +101,7 @@ class MofifyProducts extends Component {
         ).then(()=>{
         let f=false;
         var  productsEl = document.getElementById('products');
+        if(productsEl!==null)
          productsEl.innerHTML = productsArr.map(product=>{
          if(product.product_name.toLowerCase().includes(document.getElementById('search').value.toLowerCase()))
          {

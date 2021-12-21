@@ -9,6 +9,7 @@ import MofifyProducts from './Components/MofifyProducts';
 import Home from './Components/Home';
 import React, { Component} from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import $ from "jquery"
 class App extends Component {
   render(){
   return (

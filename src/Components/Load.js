@@ -1,15 +1,18 @@
 import React from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 import ReactLoading from "react-loading";
 
-export default function Load() {
+export default function Load(prop) {
 return (
-	<div style={{position:"absolute",left:"40%",transform: "translateX(40%)",top:"30%",transform:"translateY(30%)",zIndex:"1",position:"fixed"}}>
+	<div style={{backgroundColor:"#f8f8f8ad",left:"0",top:"0",zIndex:"1",position:"fixed",height:"100%",width:"100%"}}>
+	<div style={{margin:"0",top:"40%",transform:"translateY(-40%)",left:"50%",transform:"translateX(-50%)",position:"absolute"}}>
 	<ReactLoading
 		type="spokes"
-		color="white"
-		height={100}
-		width={100}
+		color="blue"
+		height={150}
+		width={150}
 	/>
+	</div>
 	</div>
 );
 }

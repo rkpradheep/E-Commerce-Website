@@ -10,6 +10,7 @@
      height:110%;
     margin-left: -8px;
     zoom: 80%;
+
   }
   
   .form {
@@ -158,4 +159,9 @@ font-size: medium;
 
   }
   
-  
+  @media (min-height:1000px ){
+.body{
+  zoom:200%;
+}    
+
+  }

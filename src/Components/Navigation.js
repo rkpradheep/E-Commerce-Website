@@ -3,6 +3,7 @@ import { Navbar, Nav} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { Component } from 'react';
+import styles from "../Styles/navigation.module.css";
 class Navigation extends Component{
 	constructor()
 	{
@@ -19,9 +20,9 @@ render()
 return (
 	
 	  <div>
-		<Navbar bg="dark" variant="dark" className="navbar" expand="lg" fixed='top' style={{zIndex:"1"}}>
-		  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-		  <Navbar.Collapse id="basic-navbar-nav">
+		<Navbar bg="dark" variant="dark" expand="lg" className={styles.Zoom} collapseOnSelect fixed='top'>
+		  <Navbar.Toggle   />
+		  <Navbar.Collapse  >
 			<Nav >
 			 <Nav.Link as={Link} to="/" style={{margin:"1px",margin:"auto"}}>Home</Nav.Link>
 			  <Nav.Link as={Link} to="/product" style={{margin:"1px",margin:"auto"}}>Purchase</Nav.Link>

@@ -11,7 +11,6 @@ import Load from "./Load";
 import {Modal,Button} from 'react-bootstrap';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 toast.configure()
 var p=null;
 var productsEl = null;
@@ -19,7 +18,6 @@ var cartBtnEl = null;
 
 let cartArr;
 let productsArr = [];
-
 class Product extends Component
 {
    constructor()
@@ -36,7 +34,7 @@ class Product extends Component
 
   LogOut=(e)=>{
     window.localStorage.clear()
-      this.setState({isLoggedIn:false});
+    this.setState({isLoggedIn:false});
   }
   GoToCartF=(e)=>{
 
@@ -62,7 +60,6 @@ class Product extends Component
 <div>
 
 <div className={styles.body}>
-
 <Navigation/>
 <br/><br/>
 <Modal show={this.state.modal} onHide={this.handleClose}  >
@@ -76,12 +73,12 @@ class Product extends Component
             </Button>
           </Modal.Footer>
         </Modal>
-    <div style={{backgroundColor:"black",width:"100%"}}>
-<h3 style={{color:"white",height:"50px",marginTop:"30px"}}>Welcome, {localStorage.getItem("name")}</h3>
+    <div style={{backgroundColor:"black",width:"100%",height:"70px",marginTop:"80px",justifyContent:"center"}}>
+<h3 style={{color:"white",height:"50px",marginTop:"20px"}}>Welcome, {localStorage.getItem("name")}</h3>
 </div>
 
 <a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"55%",textDecoration:"none"}}>
-<img src={logoutIcon} height={40} width={50} style={{marginLeft:"99%",marginTop:"-140%",borderRadius:"10px"}} />
+<img src={logoutIcon} height={40} width={50} style={{marginLeft:"99%",marginTop:"-135%",borderRadius:"10px"}} />
 
 		  </a>
 
@@ -103,11 +100,11 @@ class Product extends Component
 
         </div>
   <br/><br/>
-    <div className={styles.products} id="products">
-<div style={{margin:"0 0px 1000px 0",marginTop:"300px"}}>
+  <div className={styles.products} id="products">
+<div>
 <Load/>
 </div>
-    </div>
+</div>
    
 </div>
 </div>
@@ -144,14 +141,12 @@ class Product extends Component
 
 pp(){
 
-    productsEl = document.getElementById('products');
 
      var Ref=firebase.database().ref("/").child("data");
      Ref.on("value", (snapshot) => {
         productsArr = snapshot.val();
-
-      let TCartArr=JSON.parse(localStorage.getItem('cartArr'));
-      if(TCartArr!=null)
+         let TCartArr=JSON.parse(localStorage.getItem('cartArr'));
+      if(TCartArr!==null)
       {
         
       TCartArr.forEach((part,index)=>{
@@ -164,12 +159,9 @@ pp(){
 
 
       });
-
-
-
       }
-              
-    productsEl = document.getElementById('products');
+     productsEl = document.getElementById('products');
+     if(productsEl!=null)
      productsEl.innerHTML = productsArr.map(product=>{
      
      return '<div class="product" style="display: flex;flex-direction: column; justify-content: space-between; text-align: center; background-color: #CCCCC6;border-radius: 15px; margin-bottom: 25px;margin-right: 5px;  padding: 15px;">'+
@@ -218,6 +210,7 @@ pp(){
          document.getElementById("stock"+part._id).innerHTML="Available Stock: "+part.stock;
          toast('You have added '+part.qty+' '+part.name+' successfully to your cart',{type:"success"});
          f=true;
+         localStorage.setItem('cartArr',JSON.stringify(cartArr));
          return ;
          }
      
@@ -227,14 +220,15 @@ pp(){
   
  }
     addToCart=(e)=>{
+       
     var item={};
       if(!this.isItemInCart(e.currentTarget.id))
      productsArr.forEach((part,index)=>{
          if (part._id === e.currentTarget.id){
              if(part.product_stock<1)
                 {
-                    alert("Stock not avaible for this product")
-                    return
+                  toast("Stock not avaible for this product",{type:"error"})
+                  return
                 }
          item['name'] = part.product_name;      
          item['price'] = part.product_price;
@@ -262,7 +256,6 @@ pp(){
 // add to cart function
 
 // display cart
-
 
 
 

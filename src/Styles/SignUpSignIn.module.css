@@ -95,3 +95,8 @@ button:hover{
 	transform: scale(.6);
 }
 
+@media (min-height:1000px ){
+	.main{
+	  zoom:200%;
+	} 
+}

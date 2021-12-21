@@ -8,7 +8,7 @@ return(
     <div className={styles.main}>    
              <Navigation/>
     <br/><br/><br/>
-             <div style={{width:"100px",backgroundSize:"cover",height:"150px",float:"right",backgroundRepeat:"no-repeat",backgroundImage:`url(${bg})`}}>
+             <div className={styles.IconSize} style={{width:"100px",backgroundSize:"cover",height:"150px",float:"right",backgroundRepeat:"no-repeat",backgroundImage:`url(${bg})`}}>
 </div>
              <div className={styles.c1}>
 <Carousel >

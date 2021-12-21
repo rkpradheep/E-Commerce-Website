@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Load from './Load.js';
+import firebase from "../firebase";
 toast.configure()
 var cartListEl = null;
 var totalEl = null;
@@ -29,26 +30,68 @@ class Cart extends Component
 }
      handleToken=(token)=>{
         var TOTAL=this.state.total
+        let PurchaseDetails=[]
+        let PD=JSON.parse(localStorage.getItem("cartArr"))
+        const total={"TOTAL":this.state.total}
         this.setState({isLoading:true})
-        handleToken(token).then(()=>{
-            this.setState({isLoading:false})
-            setTimeout(()=>{
-            this.setState({checkout:true})},3000)})
+        PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price})})
+        mail();
+        var emails;
+        getMail().then(()=>{mail().then(()=>handleToken(token).then(()=>{this.setState({isLoading:false})
+        setTimeout(()=>{
+        this.setState({checkout:true})},3000)}
+        ))})
+       async function getMail(){
+        
+        await firebase.database().ref("/").child("Users").orderByChild("name").equalTo(localStorage.getItem("name")).once("value",(snapshot)=>{
+           snapshot.forEach(e=>{emails= e.val().email;})
+          
+        });
+       }
+      async function mail(){
+       const email={
+           "data":emails
+       }
+      const PDetails={
+          data:JSON.stringify(PurchaseDetails)
+      }
+    
+      const response = await axios.post(
+         "https://7qxuu.sse.codesandbox.io/mail", {PDetails,total,email}
+      );
+       }
+
+            
         async function handleToken(token) {
+            
             const product ={
                 price:TOTAL,
               }
             const response = await axios.post(
      "https://0kp4s.sse.codesandbox.io/checkout", {token,product}
             );
-
+         
             const { status } = response.data;
             console.log("Response:", response.data);
-            
 
-            if (status === "success") {
-              toast("Success! Check email for details", { type: "success" });
-            } else {
+            if (status === "success") { 
+                const cartArr = JSON.parse(localStorage.getItem("cartArr"));
+                firebase.database().ref("/").child("data").orderByChild("_id").once("value",(snapshot)=>{
+                    cartArr.forEach(cart=>{
+                    snapshot.forEach(e=>{ 
+                    if(e.val()._id===cart._id){
+                    let product=e.val().product_stock-cart.qty
+                    firebase.database().ref("/").child("data/"+e.key+"/product_stock").set(product).then(()=>{
+                  })
+                    }
+                 })
+                })
+            })
+            
+            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")+"/"+new Date()).push(PurchaseDetails).then(()=>{  toast("Success! Check email for details",{type:"success"})
+        })
+            }
+            else {
               toast("Something went wrong", { type: "error" });
             }
         
@@ -162,7 +205,7 @@ cartListEl = document.getElementById('cartList');
 <div className={styles.body} style={{width:"100%"}}>
 {
        (this.state.isLoading)?
-       <Load/>:null
+       <Load color="blue"/>:null
       
 }
 <div className={styles.outer}>
@@ -185,15 +228,12 @@ amount={this.state.total*100}
 <Link to="/product" style={{textDecoration:"none"}}>
 <button className={styles.btn} style={{width:"100px",margin:"auto"}}>Go Back</button>
 </Link>
-
 </div>
 </div>
 );
 };
-
-
+ 
 }
-
 
 // checkout function
 
