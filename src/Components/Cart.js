@@ -35,7 +35,6 @@ class Cart extends Component
         const total={"TOTAL":this.state.total}
         this.setState({isLoading:true})
         PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price})})
-        mail();
         var emails;
         getMail().then(()=>{mail().then(()=>handleToken(token).then(()=>{this.setState({isLoading:false})
         setTimeout(()=>{
