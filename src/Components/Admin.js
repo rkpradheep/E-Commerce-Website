@@ -105,21 +105,13 @@ class Admin extends Component{
           
         <div>
           {(this.state.isLoad)?<Load/>:null}
-         <Navigation/>
+         <Navigation value={true}/>
 
         
             <div className={styles.body}>
-            <Link to="/admin/purchaseHistory" style={{marginLeft:"60px",marginTop:"-540px",textDecoration:"none",zIndex:"2",float:"top",position:"fixed"}}>
-                            <Button
-                            >
-                                Purchase History
-                            </Button>
-             </Link>
 <a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"2",position:"fixed"}}>
 <img src={logoutIcon} height={30} width={50} style={{borderRadius:"10px"}} />
 		  </a>
-    <button className={styles.submit} onClick={this.Modify}style={{position:"absolute",marginTop:"-590px",borderRadius:"10px",height:"30px",width:"70px",marginLeft:"250px",zIndex:100,position:"fixed"}}>Modify</button>
- 
            <div className={styles.form}>
 
   <div className={styles.title}>Welcome</div>

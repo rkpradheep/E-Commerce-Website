@@ -5,11 +5,12 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { Component } from 'react';
 import styles from "../Styles/navigation.module.css";
 class Navigation extends Component{
-	constructor()
+	constructor(props)
 	{
 		super()
 		this.state={
-			GoToAdmin:false
+			GoToAdmin:false,
+			PurchaseHistoryVisibility:props.value?"block":"none"
 		}
 	}
 render()
@@ -45,6 +46,12 @@ return (
 			  <Nav.Link as={Link} to="/signup" style={{margin:"1px",margin:"auto"}}>Sign Up</Nav.Link>
 			  <Nav.Link href="mailto:infotix@gmail.com" style={{margin:"1px",margin:"auto"}}>Contact us</Nav.Link>
 
+			  <Nav.Link as={Link} to="admin/PurchaseHistory" style={{margin:"1px",margin:"auto",display:this.state.PurchaseHistoryVisibility}}>Purchase History</Nav.Link>
+			  <Nav.Link as={Link} to="/modifyproducts" style={{margin:"1px",margin:"auto",display:this.state.PurchaseHistoryVisibility}}>Product Updation</Nav.Link>
+			  <Nav.Link as={Link} to="/" onClick={()=>window.localStorage.clear()} style={{margin:"1px",margin:"auto",display:(localStorage.getItem("admin")||localStorage.getItem("name")!==null)?"block":"none"}}>Log out</Nav.Link>
+
+
+				  
 			</Nav>
 		  </Navbar.Collapse>
 
