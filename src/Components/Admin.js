@@ -109,7 +109,7 @@ class Admin extends Component{
 
         
             <div className={styles.body}>
-            <Link to="/admin/purchaseHistory" style={{position:"absolute",marginLeft:"400px",marginTop:"-670px",textDecoration:"none",padding:"40px",zIndex:"2",position:"fixed"}}>
+            <Link to="/admin/purchaseHistory" style={{marginLeft:"60px",marginTop:"-540px",textDecoration:"none",zIndex:"2",float:"top",position:"fixed"}}>
                             <Button
                             >
                                 Purchase History
