@@ -36,7 +36,21 @@ import {
           columnName:"date",
           wordWrapEnabled: "true",
 
-          }
+          },
+          {
+            columnName:"productName",
+            wordWrapEnabled: "true",
+
+          },
+          {
+            columnName:"customerName",
+            wordWrapEnabled: "true",
+          },
+          {
+            columnName:"quantity",
+            wordWrapEnabled: "true",
+          },
+
             
 
           ],
