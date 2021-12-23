@@ -21,7 +21,7 @@ import {
   
     
   } from "@devexpress/dx-react-grid-bootstrap4";
-
+import styles from '../Styles/purchasedetails.module.css';
   class PurchaseHistory extends React.Component{
 
     constructor() {
@@ -118,11 +118,10 @@ import {
      
       render() {
         return (
-          <div>
+          <div className={styles.Zoom}>
           <div style={{backgroundColor:"#ede2fa",height:"100%",width:"100%",position:"fixed"}}>
-          </div>
           <Navigation/>
-          <div style={{position:"absolute",height:"100%",top:"30%",transform:"translate-y(-30%)"}}>
+          <div style={{position:"absolute",height:"100%",top:"20%",transform:"translate-y(-20%)",zIndex:"1"}}>
             <Grid 
               rows={this.state.purchaseHistory}
               columns={this.state.columns}
@@ -159,6 +158,7 @@ import {
             
             </Grid>
                 </div>          
+                </div>
 
               </div>
         );

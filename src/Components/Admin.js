@@ -109,7 +109,7 @@ class Admin extends Component{
 
         
             <div className={styles.body}>
-<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"2",position:"fixed"}}>
+<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"1",position:"fixed"}}>
 <img src={logoutIcon} height={30} width={50} style={{borderRadius:"10px"}} />
 		  </a>
            <div className={styles.form}>
