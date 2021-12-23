@@ -35,7 +35,7 @@ class Cart extends Component
         let PD=JSON.parse(localStorage.getItem("cartArr"))
         const total={"TOTAL":this.state.total}
         this.setState({isLoading:true})
-        PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price,"date":new Date()})})
+        PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price,"date":(new Date().toLocaleString())+""})})
         var emails;
         getMail().then(()=>{mail().then(()=>handleToken(token).then(()=>{this.setState({isLoading:false})
         setTimeout(()=>{
@@ -196,7 +196,6 @@ cartListEl = document.getElementById('cartList');
 
 
     render(){
-     
         if(this.state.checkout)
         return <Redirect to="/checkout" />
      $(document).ready(()=>{this.pp()} )
