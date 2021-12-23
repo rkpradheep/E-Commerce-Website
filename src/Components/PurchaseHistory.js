@@ -29,7 +29,7 @@ import {
     
         this.state = {
           purchaseHistory: [],
-          sorting: [{ columnName: "customerName", direction: "asc" }],
+          sorting: [{ columnName: "date", direction: "desc" }],
           style:[
           
          { 
@@ -64,7 +64,7 @@ import {
               title: "Product Price",
               name: "price",
             },{
-                title:"Date & Time",
+                title:"TimeStamp",
                 name:"date"
             }
           ],
