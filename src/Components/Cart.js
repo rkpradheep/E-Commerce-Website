@@ -29,12 +29,13 @@ class Cart extends Component
    
 }
      handleToken=(token)=>{
+       
         var TOTAL=this.state.total
-        let PurchaseDetails=[]
+        let PurchaseDetails=[],Existing=[]
         let PD=JSON.parse(localStorage.getItem("cartArr"))
         const total={"TOTAL":this.state.total}
         this.setState({isLoading:true})
-        PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price})})
+        PD.forEach(D=>{PurchaseDetails.push({"name":D.name,"qty":D.qty,"price":D.price,"date":new Date().toUTCString()})})
         var emails;
         getMail().then(()=>{mail().then(()=>handleToken(token).then(()=>{this.setState({isLoading:false})
         setTimeout(()=>{
@@ -62,7 +63,6 @@ class Cart extends Component
 
             
         async function handleToken(token) {
-            
             const product ={
                 price:TOTAL,
               }
@@ -86,16 +86,17 @@ class Cart extends Component
                  })
                 })
             })
-            
-            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")+"/"+new Date()).push(PurchaseDetails).then(()=>{  toast("Success! Check email for details",{type:"success"})
-        })
+
+            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")).once("value",(snapshot)=>{if(snapshot.val()!==null)Existing=snapshot.val()}).then(()=>{
+            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")).set(Existing.concat(PurchaseDetails)).then(()=>{  toast("Success! Check email for details",{type:"success"})
+        })})
             }
             else {
               toast("Something went wrong", { type: "error" });
             }
         
           }
-      
+     
     }
     pp=()=>
 {
@@ -231,7 +232,7 @@ amount={this.state.total*100}
 </div>
 );
 };
- 
+
 }
 
 // checkout function

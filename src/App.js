@@ -9,7 +9,7 @@ import MofifyProducts from './Components/MofifyProducts';
 import Home from './Components/Home';
 import React, { Component} from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import $ from "jquery"
+import PurchaseHistory from './Components/PurchaseHistory.js';
 class App extends Component {
   render(){
   return (
@@ -23,6 +23,7 @@ class App extends Component {
      <Route exact path="/admin" component={Admin}/>
      <Route exact path="/modifyproducts" component={MofifyProducts}/>
      <Route exact path="/" component={Home}/>
+     <Route exact path="/admin/purchaseHistory" component={PurchaseHistory}/>
 
      </Switch>
      

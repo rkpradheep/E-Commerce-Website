@@ -1,9 +1,10 @@
 import { Component } from "react/cjs/react.production.min";
 import firebase from "../firebase";
 import styles from "../Styles/admin.module.css";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import logoutIcon from "../logout.png"
 import Navigation from "./Navigation";
+import { Button }  from "react-bootstrap";
 import Load from "./Load";
 class Admin extends Component{
   constructor()
@@ -108,12 +109,19 @@ class Admin extends Component{
 
         
             <div className={styles.body}>
-<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"2"}}>
+            <Link to="/admin/purchaseHistory" style={{position:"absolute",marginLeft:"400px",marginTop:"-670px",textDecoration:"none",padding:"40px",zIndex:"2",position:"fixed"}}>
+                            <Button
+                            >
+                                Purchase History
+                            </Button>
+             </Link>
+<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"285px",marginTop:"-420px",textDecoration:"none",position:"absolute",zIndex:"2",position:"fixed"}}>
 <img src={logoutIcon} height={30} width={50} style={{borderRadius:"10px"}} />
 		  </a>
-    <button className={styles.submit} onClick={this.Modify}style={{position:"absolute",marginTop:"-590px",borderRadius:"10px",height:"30px",width:"70px",marginLeft:"250px",zIndex:100}}>Modify</button>
-
+    <button className={styles.submit} onClick={this.Modify}style={{position:"absolute",marginTop:"-590px",borderRadius:"10px",height:"30px",width:"70px",marginLeft:"250px",zIndex:100,position:"fixed"}}>Modify</button>
+ 
            <div className={styles.form}>
+
   <div className={styles.title}>Welcome</div>
   <div className={styles.subtitle}>Let's add product!</div>
   <form autoComplete="off">

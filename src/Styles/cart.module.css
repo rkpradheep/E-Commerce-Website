@@ -5,7 +5,6 @@
     margin:0px;
     position: absolute;
     justify-content: center;
-     height:100%;
     margin-left: 0px;
     min-width: 600px;
     min-height: 1250px;
@@ -40,7 +39,7 @@ table {
     text-align: center;
 }
 
-td, th {
+td,th {
     border: 2px solid #8f6797;
     text-align: left;
     padding: 8px;
