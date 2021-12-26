@@ -3,6 +3,10 @@ import { Link ,Redirect} from "react-router-dom";
 import styles from "../Styles/SignUpSignIn.module.css";
 import firebase from "../firebase";
 import Navigation from "./Navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
+toast.configure();
+var OTPVALUE="";
 class SignUpSignIn extends Component
 {
 	constructor()
@@ -22,13 +26,18 @@ class SignUpSignIn extends Component
 				var c=document.getElementById("cpassword").value;
 
 			  if(p==""||n=="" || e=="" || c=="")
-			    {  alert("Please fill all the required field")
+			    {  toast("Please fill all the required field",{type:"error"})
 					return ;
 				}
 				else if(c!=p)
 				{
-					alert("Given password and confirm password don't match")
+					toast("Given password and confirm password don't match",{type:"error"})
 					return ;
+				}
+				else if(c.length<8)
+				{
+					toast("Your password must contain atleast 8 characters.",{type:"error"});
+					return;
 				}
 				var flag=true;
 			      
@@ -44,18 +53,36 @@ class SignUpSignIn extends Component
 						});
 					}).then(()=>{
 						if(flag)
-						{
-							var loginref = firebase.database().ref("/").child("Users").push({
-								name:n,
-								email:e,
-								password:p,
-								}).catch(alert);
-								window.localStorage.clear();
-								localStorage.setItem("name",n);
-								this.setState({isLoggedIn:true});
+						{ 
+                                  
+							document.getElementById("otp").style.display="block";
+							document.getElementById("btn").style.display="none";
+							document.getElementById("name").style.display="none";
+							document.getElementById("password").style.display="none";
+							document.getElementById("cpassword").style.display="none";
+							document.getElementById("loginn").style.display="none";
+							document.getElementById("msg").style.display="block";
+
+
+							var otp=Math.floor(Math.random()*(9999-1000))+1000;
+					const email={
+							"data":e
+							}
+						   const OTP={
+							   "data":otp
+						   }
+
+						   toast("OTP sent to your mail for account verification process. Please check the mail.",{type:"success"});  
+						   const response =  axios.post(
+							  "https://7qxuu.sse.codesandbox.io/auth", {OTP,email}
+						   ); 
+						    OTPVALUE=otp;
+							this.Authentication();
+
+
 						}
 						else
-						alert("Cannot create account, User id with this email already exists!");
+						toast("Cannot create account, User id with this email already exists!",{type:"error"});
 
 					});
 						
@@ -68,6 +95,48 @@ class SignUpSignIn extends Component
 				 //localStorage.setItem("name",document.getElementById("name").value);
 				
 			   }
+
+
+			   	Authentication=()=>{
+
+					var n=document.getElementById("name").value;
+					var p=document.getElementById("password").value;
+					var e=document.getElementById("email").value;
+					
+				if((document.getElementById("otp").value.length==4))
+ 				  if(document.getElementById("otp").value===OTPVALUE+"")
+					  {
+					   var loginref = firebase.database().ref("/").child("Users").push({
+						   name:n,
+						   email:e,
+						   password:p,
+						   }).catch(alert);
+						   window.localStorage.clear();
+						   localStorage.setItem("name",n);
+						   toast("Congragulation! You are authenticated successfully",{type:"success"});
+						   this.setState({isLoggedIn:true});
+					  }
+					  else
+					  {
+					   toast("Oops! Account authentication failed.\nTry again later.",{type:"error"});
+					   document.getElementById("otp").style.display="none";
+					   document.getElementById("btn").style.display="block";
+					   document.getElementById("name").style.display="block";
+					   document.getElementById("password").style.display="block";
+					   document.getElementById("cpassword").style.display="block";
+					   document.getElementById("loginn").style.display="block";
+					   document.getElementById("msg").style.display="none";
+
+					   
+					   
+					  }
+
+
+					   
+				   }
+
+
+
 			   IsValidUser= ()=>{
 			    var n;
 				var p=document.getElementById("PASSWORD").value;
@@ -102,7 +171,7 @@ class SignUpSignIn extends Component
 						else{
 							document.getElementById("PASSWORD").value="";
 							document.getElementById("EMAIL").value="";
-					     	alert("Invalid email id or password!");
+					     	toast("Invalid email id or password!",{type:"error"});
 						}
 
 					});
@@ -141,8 +210,10 @@ class SignUpSignIn extends Component
 					<input className={styles.input} type="text"  id="name" placeholder="User name" Required=""/><br></br>
 					<input className={styles.input} type="email" id="email" placeholder="Email" Required=""/><br/>
 					<input className={styles.input} type="password" id="password" placeholder="Password" Required=""/><br/>
+					<input className={styles.input} type="text" style={{display:"none"}} onInput={this.Authentication}  id="otp" placeholder="Enter the OTP" Required=""/>
 					<input className={styles.input} type="password" id="cpassword" placeholder="Confirm Password" Required=""/><br/>
-					<button className={styles.button} type="button" onClick={this.NewUser} >Sign up</button>
+                      <p id="msg" style={{isplay:"none",color:"red",display:"none"}}>NOTE: You may not receive the OTP incase of invalid email is provided.</p>
+					<button className={styles.button} type="button" onClick={this.NewUser} id="btn" >Sign up</button>
 				</form>
 			</div>
 
