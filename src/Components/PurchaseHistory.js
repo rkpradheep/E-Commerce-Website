@@ -121,7 +121,7 @@ import styles from '../Styles/purchasedetails.module.css';
           <div className={styles.Zoom}>
           <div style={{backgroundColor:"#ede2fa",height:"100%",width:"100%",position:"fixed"}}>
           <Navigation/>
-          <div style={{position:"absolute",height:"100%",top:"20%",transform:"translate-y(-20%)",zIndex:"1"}}>
+          <div style={{position:"absolute",height:"100%",top:"10%",transform:"translate-y(-10%)",zIndex:"1"}}>
             <Grid 
               rows={this.state.purchaseHistory}
               columns={this.state.columns}
@@ -151,7 +151,7 @@ import styles from '../Styles/purchasedetails.module.css';
               <IntegratedSorting />
               <SearchState />
               <IntegratedFiltering />
-              <VirtualTable columnExtensions={this.state.style} height="1000px"/>
+              <VirtualTable columnExtensions={this.state.style} height="500px"/>
               <TableHeaderRow showSortingControls  />
               <Toolbar />
               <SearchPanel />

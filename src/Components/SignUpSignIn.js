@@ -82,7 +82,7 @@ class SignUpSignIn extends Component
 						   }
 
 						   toast("OTP sent to your mail for account verification process. Please check the mail.",{type:"success"});  
-						   const response =  axios.post(
+						      const response =  axios.post(
 							  "https://7qxuu.sse.codesandbox.io/auth", {OTP,email}
 						   ); 
 						    OTPVALUE=otp;
@@ -118,22 +118,33 @@ class SignUpSignIn extends Component
 				if((document.getElementById("otp").value.length==4))
  				  if(document.getElementById("otp").value===OTPVALUE+"")
 					  {
-					   var loginref = firebase.database().ref("/").child("Users").push({
-						   name:n,
-						   email:e,
-						   addressLine1:al1,
-						   addressLine2:al2,
-						   dob:dob,
-						   password:p,
-						   }).catch(alert);
+						firebase.database().ref("/").child("Users").once("value",(snapshot)=>{
+						 let u={
+								name:n,
+								email:e,
+								addressLine1:al1,
+								addressLine2:al2,
+								dob:dob,
+								password:p,
+						 }
+						 let user=[]
+						if(snapshot.val()!=null)
+				          user=snapshot.val();
+					       user.push(u)
+					   var loginref = firebase.database().ref("/").child("Users").set(user).catch(alert);
 						   window.localStorage.clear();
 						   localStorage.setItem("name",n);
+						   localStorage.setItem("email",e);
+
 						   toast("Congragulation! You are authenticated successfully",{type:"success"});
 						   this.setState({isLoggedIn:true});
+						});
 					  }
 					  else
 					  {
 					   toast("Oops! Account authentication failed.\nTry again later.",{type:"error"});
+				       document.getElementById("otp").value=""
+
 					   document.getElementById("otp").style.display="none";
 					   document.getElementById("btn").style.display="block";
 					   document.getElementById("name").style.display="block";
@@ -163,7 +174,7 @@ class SignUpSignIn extends Component
 				var p=document.getElementById("PASSWORD").value;
 				var e=document.getElementById("EMAIL").value;
 				if(p==""||e=="")
-			    {  alert("Please fill all the required field")
+			    {  alert("Please fill all the required fields")
 					return ;
 				}
 				var flag=false;
@@ -187,6 +198,7 @@ class SignUpSignIn extends Component
 						if(flag)
 						{       window.localStorage.clear();
 							   localStorage.setItem("name",n);
+							   localStorage.setItem("email",e);
 								this.setState({isLoggedIn:true});
 						}
 						else{
