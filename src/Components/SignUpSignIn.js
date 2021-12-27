@@ -24,8 +24,12 @@ class SignUpSignIn extends Component
 				var p=document.getElementById("password").value;
 				var e=document.getElementById("email").value;
 				var c=document.getElementById("cpassword").value;
+				var al1=document.getElementById("al1").value;
+				var al2=document.getElementById("al2").value;
+				var dob=document.getElementById("dob").value;
 
-			  if(p==""||n=="" || e=="" || c=="")
+
+			  if(p==""||n=="" || e=="" || c=="" || al1===""||dob==="")
 			    {  toast("Please fill all the required field",{type:"error"})
 					return ;
 				}
@@ -62,6 +66,11 @@ class SignUpSignIn extends Component
 							document.getElementById("cpassword").style.display="none";
 							document.getElementById("loginn").style.display="none";
 							document.getElementById("msg").style.display="block";
+							document.getElementById("al1").style.display="none";
+
+							document.getElementById("al2").style.display="none";
+	 
+							document.getElementById("dob").style.display="none";
 
 
 							var otp=Math.floor(Math.random()*(9999-1000))+1000;
@@ -102,6 +111,9 @@ class SignUpSignIn extends Component
 					var n=document.getElementById("name").value;
 					var p=document.getElementById("password").value;
 					var e=document.getElementById("email").value;
+					var al1=document.getElementById("al1").value;
+					var al2=document.getElementById("al2").value;
+					var dob=document.getElementById("dob").value;
 					
 				if((document.getElementById("otp").value.length==4))
  				  if(document.getElementById("otp").value===OTPVALUE+"")
@@ -109,6 +121,9 @@ class SignUpSignIn extends Component
 					   var loginref = firebase.database().ref("/").child("Users").push({
 						   name:n,
 						   email:e,
+						   addressLine1:al1,
+						   addressLine2:al2,
+						   dob:dob,
 						   password:p,
 						   }).catch(alert);
 						   window.localStorage.clear();
@@ -125,6 +140,12 @@ class SignUpSignIn extends Component
 					   document.getElementById("password").style.display="block";
 					   document.getElementById("cpassword").style.display="block";
 					   document.getElementById("loginn").style.display="block";
+					   document.getElementById("al1").style.display="block";
+
+					   document.getElementById("al2").style.display="block";
+
+					   document.getElementById("dob").style.display="block";
+
 					   document.getElementById("msg").style.display="none";
 
 					   
@@ -207,12 +228,15 @@ class SignUpSignIn extends Component
 			<div className={styles.signup}>
 				<form autoComplete="off" style={{all:"unset"}}>
 					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call} >Sign up</label>
-					<input className={styles.input} type="text"  id="name" placeholder="User name" Required=""/><br></br>
-					<input className={styles.input} type="email" id="email" placeholder="Email" Required=""/><br/>
-					<input className={styles.input} type="password" id="password" placeholder="Password" Required=""/><br/>
+					<input className={styles.input} type="text"  id="name" placeholder="User name *" Required=""/><br></br>
+					<input className={styles.input} type="email" id="email" placeholder="Email *" Required=""/><br/>
+					<input className={styles.input} type="text" id="dob" placeholder="Date of Birth *" onFocus={()=>document.getElementById("dob").type='date'} onBlur={()=>document.getElementById("dob").type='text'}  Required=""/><br/>
+					<input className={styles.input} type="text" id="al1" placeholder="Address Line 1 *" Required=""/><br/>
+					<input className={styles.input} type="text" id="al2" placeholder="Address Line 2" /><br/>
+					<input className={styles.input} type="password" id="password" placeholder="Password *" Required=""/><br/>
 					<input className={styles.input} type="text" style={{display:"none"}} onInput={this.Authentication}  id="otp" placeholder="Enter the OTP" Required=""/>
-					<input className={styles.input} type="password" id="cpassword" placeholder="Confirm Password" Required=""/><br/>
-                      <p id="msg" style={{isplay:"none",color:"red",display:"none"}}>NOTE: You may not receive the OTP incase of invalid email is provided.</p>
+					<input className={styles.input} type="password" id="cpassword" placeholder="Confirm Password *" Required=""/><br/>
+                      <p id="msg" style={{isplay:"none",color:"red",display:"none",marginLeft:"10px"}}>NOTE: You may not receive the OTP incase of invalid email is provided.</p>
 					<button className={styles.button} type="button" onClick={this.NewUser} id="btn" >Sign up</button>
 				</form>
 			</div>
@@ -236,12 +260,18 @@ class SignUpSignIn extends Component
     
 }
 function call() {
-	if(  document.getElementById("loginn").style.transform=="translateY(-600px)"
-	)
-	document.getElementById("loginn").style.transform="translateY(-180px)";
+	if(  document.getElementById("loginn").style.transform=="translateY(-780px)"
+	){
+		document.getElementById("name").style.display="block";
 
-   else
-   document.getElementById("loginn").style.transform="translateY(-600px)";
+	document.getElementById("loginn").style.transform="translateY(-180px)";
+}
+
+   else{
+	document.getElementById("name").style.display="none";
+
+   document.getElementById("loginn").style.transform="translateY(-780px)";
+   }
 
 }
 
