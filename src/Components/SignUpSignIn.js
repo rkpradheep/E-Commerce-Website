@@ -30,7 +30,7 @@ class SignUpSignIn extends Component
 
 
 			  if(p==""||n=="" || e=="" || c=="" || al1===""||dob==="")
-			    {  toast("Please fill all the required field",{type:"error"})
+			    {  toast("Please fill all the required fields",{type:"error"})
 					return ;
 				}
 				else if(c!=p)
