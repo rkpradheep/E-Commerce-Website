@@ -110,7 +110,7 @@ class Product extends Component
 </div>
  );
  };
- modify()
+ modify=()=>
 {
     let f=false;
 
@@ -133,10 +133,11 @@ class Product extends Component
      
      
     }).join('');
+    $(".addBtn").on('click', this.addToCart);
+
     if(!f)
     productsEl.innerHTML =`<h2 style="width:500px;color:black;margin:0 0 170px 0px">No result found!</h2>`;
-    $(".addBtn").on('click', this.addToCart);
-}
+  }
 
 
 pp(){
