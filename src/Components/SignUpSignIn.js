@@ -15,9 +15,18 @@ class SignUpSignIn extends Component
 			isLoggedIn: false,
 			admin:false
 		  };
-	
+
 	 }
-	 
+	 onKeyUp=(event)=>{
+		if (event.charCode === 13) {
+			this.IsValidUser();
+		       }
+	 }
+	 onKeyUp2=(event)=>{
+		if (event.charCode === 13) {
+			this.NewUser();
+		       }
+	 }
 
 		     NewUser= ()=>{
 				var n=document.getElementById("name").value;
@@ -174,7 +183,9 @@ class SignUpSignIn extends Component
 				var p=document.getElementById("PASSWORD").value;
 				var e=document.getElementById("EMAIL").value;
 				if(p==""||e=="")
-			    {  alert("Please fill all the required fields")
+				{				
+					toast("Please fill all the required fields",{type:"error"});
+
 					return ;
 				}
 				var flag=false;
@@ -238,7 +249,7 @@ class SignUpSignIn extends Component
     <div className={styles.main}>  	
 
 			<div className={styles.signup}>
-				<form autoComplete="off" style={{all:"unset"}}>
+				<form autoComplete="off" style={{all:"unset"}} onKeyPress={this.onKeyUp2}>
 					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call} >Sign up</label>
 					<input className={styles.input} type="text"  id="name" placeholder="User name *" Required=""/><br></br>
 					<input className={styles.input} type="email" id="email" placeholder="Email *" Required=""/><br/>
@@ -254,7 +265,7 @@ class SignUpSignIn extends Component
 			</div>
 
 			<div className={styles.login} id="loginn">
-			      <form autoComplete="off" style={{all:"unset"}}>
+			      <form autoComplete="off" style={{all:"unset"}} onKeyPress={this.onKeyUp}>
 					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call}>Login</label>
 					<input className={styles.input} type="email" name="email" id="EMAIL" placeholder="Email" Required=""/><br/>
 					<input className={styles.input} type="password" id="PASSWORD" placeholder="Password" Required=""/><br/>
