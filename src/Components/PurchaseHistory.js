@@ -32,15 +32,15 @@ import styles from '../Styles/purchasedetails.module.css';
           sorting: [{ columnName: "date", direction: "desc" }],
           style:[
           
-         { 
+           { 
           columnName:"date",
           wordWrapEnabled: "true",
+
 
           },
           {
             columnName:"productName",
             wordWrapEnabled: "true",
-
           },
           {
             columnName:"customerName",
@@ -78,7 +78,7 @@ import styles from '../Styles/purchasedetails.module.css';
               title: "Product Price",
               name: "price",
             },{
-                title:"TimeStamp",
+                title:"Time Stamp",
                 name:"date"
             }
           ],
@@ -100,7 +100,7 @@ import styles from '../Styles/purchasedetails.module.css';
                 var current = data.val();
                   allPurchases.push({
                   id: counter,
-                  customerName:datas.key,
+                  customerName: current.CustomerFullName,
                   productName:current.name,
                   price:current.price,
                   quantity:current.qty,
@@ -155,7 +155,7 @@ import styles from '../Styles/purchasedetails.module.css';
               <TableHeaderRow showSortingControls  />
               <Toolbar />
               <SearchPanel />
-            
+          
             </Grid>
                 </div>          
                 </div>

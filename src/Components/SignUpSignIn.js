@@ -265,7 +265,7 @@ class SignUpSignIn extends Component
 			</div>
 
 			<div className={styles.login} id="loginn">
-			      <form autoComplete="off" style={{all:"unset"}} onKeyPress={this.onKeyUp}>
+			      <form style={{all:"unset"}} onKeyPress={this.onKeyUp}>
 					<label className={styles.label} htmlFor="chk" aria-hidden="true" onClick={call}>Login</label>
 					<input className={styles.input} type="email" name="email" id="EMAIL" placeholder="Email" Required=""/><br/>
 					<input className={styles.input} type="password" id="PASSWORD" placeholder="Password" Required=""/><br/>
