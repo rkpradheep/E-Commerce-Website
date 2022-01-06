@@ -60,7 +60,7 @@ class Product extends Component
 <div>
 
 <div className={styles.body}>
-<Navigation/>
+<Navigation zoom="140%"/>
 <br/><br/>
 <Modal show={this.state.modal} onHide={this.handleClose}  >
           <Modal.Header closeButton>

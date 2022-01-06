@@ -1,6 +1,6 @@
 .div{
 	background-size: cover;
-	overflow-x:hidden;
+	overflow:hidden;
 	margin-left: 0px;
 	padding: 0;
 	width:100%;
@@ -11,6 +11,9 @@
 	align-items: center;
 	font-family: 'Jost', sans-serif;
 	background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+}
+::-webkit-scrollbar{
+	display: none;
 }
 .main{
 	
@@ -52,6 +55,7 @@
 	border-radius: 5px;
 	padding: 20px;
 }
+
 .button{
 	width: 60%;
 	height: 40px;
@@ -102,9 +106,10 @@ button:hover{
 }
 @media (min-width:1000px ){
 	.main{
-	  zoom:65%;
+	  zoom:63%;
 	  width: 500px;
 	  height: 840px;
+	  margin-top:40px;
 
 
 	} 

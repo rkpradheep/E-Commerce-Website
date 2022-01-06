@@ -24,7 +24,7 @@ class UserManagement extends Component {
         
         <div className={styles.body} >
                {(this.state.isLoad)?<Load/>:null}
-                 <Navigation/>
+                 <Navigation zoom="140%"/>
             <br/>
 <br/><br/>
 <div className={styles.search}> 

@@ -2,7 +2,7 @@
 
 .Zoom{
 z-index: 3;
-zoom:90%;
+zoom:105%;
 }
 
 @media (min-height:1000px) {

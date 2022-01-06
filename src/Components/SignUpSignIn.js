@@ -285,15 +285,17 @@ class SignUpSignIn extends Component
 function call() {
 	if(  document.getElementById("loginn").style.transform=="translateY(-780px)"
 	){
-		document.getElementById("name").style.display="block";
 
 	document.getElementById("loginn").style.transform="translateY(-180px)";
+	document.getElementById("name").style.opacity="100%"
+
 }
 
    else{
-	document.getElementById("name").style.display="none";
 
-   document.getElementById("loginn").style.transform="translateY(-780px)";
+      document.getElementById("loginn").style.transform="translateY(-780px)";
+	  document.getElementById("name").style.opacity="0%"
+
    }
 
 }

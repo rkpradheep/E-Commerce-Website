@@ -20,13 +20,13 @@ return(
              <div className={styles.c1}>
 <Carousel >
               <Carousel.Item interval={1500}>
-                <img className={styles.H}  src={C1}   alt="First slide"/>
+                <img className={styles.H}  src={C3}   alt="First slide"/>
               </Carousel.Item>
               <Carousel.Item interval={1500}>
                 <img className={styles.H} src={C2} alt="Second slide"/>
               </Carousel.Item>
               <Carousel.Item interval={1500}>
-                <img className={styles.H} src={C3}    alt="Third slide"/>
+                <img className={styles.H} src={C1}    alt="Third slide"/>
               </Carousel.Item>
               <Carousel.Item interval={1500}>
                 <img className={styles.H} src={C4}    alt="Fourth slide"/>
