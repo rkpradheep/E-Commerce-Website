@@ -77,7 +77,7 @@ class Product extends Component
 <h3 style={{color:"white",height:"50px",marginTop:"20px"}}>Welcome, {localStorage.getItem("name")}</h3>
 </div>
 
-<a href="javascript:void(0)" onClick={this.LogOut} style={{marginLeft:"55%",textDecoration:"none"}}>
+<a onClick={this.LogOut} style={{marginLeft:"55%",textDecoration:"none",cursor:"pointer"}}>
 <img src={logoutIcon} height={40} width={50} style={{marginLeft:"99%",marginTop:"-135%",borderRadius:"10px"}} />
 
 		  </a>
@@ -92,7 +92,7 @@ class Product extends Component
 
                     name="search" id="search" onInput={this.modify} autoComplete="off"/> 
 
-                <a id="cartBtn" href="javascript:void(0)" onClick={this.GoToCartF} style={{marginTop:"0px",marginLeft:"100px",position:"absolute"}}>
+                <a id="cartBtn" onClick={this.GoToCartF} style={{marginTop:"0px",marginLeft:"100px",position:"absolute",cursor:"pointer"}}>
                 <img src={cart} height="50" style={{display:"inline-block",borderRadius:"10px"}}/>
                 </a> 
 
