@@ -87,8 +87,8 @@ class Cart extends Component
                 })
             })
 
-            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")).once("value",(snapshot)=>{if(snapshot.val()!==null)Existing=snapshot.val()}).then(()=>{
-            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name")).set(Existing.concat(PurchaseDetails)).then(()=>{  toast("Success! Check email for details",{type:"success"})
+            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name").replace(/[^a-zA-Z]/g,"")).once("value",(snapshot)=>{if(snapshot.val()!==null)Existing=snapshot.val()}).then(()=>{
+            firebase.database().ref("/").child("Purchase History/"+localStorage.getItem("name").replace(/[^a-zA-Z]/g,"")).set(Existing.concat(PurchaseDetails)).then(()=>{  toast("Success! Check email for details",{type:"success"})
         })})
             }
             else {
