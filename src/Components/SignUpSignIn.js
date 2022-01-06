@@ -230,6 +230,59 @@ class SignUpSignIn extends Component
 				
 			   }
 				 
+			   ForgotPassword= ()=>{
+			 
+				var e=prompt("Enter your registered email");
+				var flag=false,p="";
+
+				if(e=="")
+				{				
+				//	toast("Please fill all the required fields",{type:"error"});
+
+					return ;
+				}
+				else{
+			      
+					firebase.database().ref("/").child("Users").once("value",(snapshot)=>{
+						snapshot.forEach((data)=>{
+							var val=data.val();
+							if(val.email==e){
+						
+                               p=val.password;
+							   flag=true;
+							   
+							}
+						
+						});
+					}).then(()=>{
+						if(flag)
+						{   mail()
+							async function mail(){
+								const password={
+									"data":p
+								}
+							    const email={
+									"data":e
+								}
+							 
+							   const response = await axios.post(
+								  "https://7qxuu.sse.codesandbox.io/forgotPassword", {password,email}
+							   );
+		            	toast("Your password is being sent successfully to your mail. You can later reset your password later in Acoount Settings menu.",{type:"success"});
+
+								}
+						}
+						else{
+
+					     	toast("Provided email address does not exist",{type:"error"});
+						}
+
+					});
+						
+				}
+				
+			   }
+				 
 			 
 			 
 
@@ -270,6 +323,8 @@ class SignUpSignIn extends Component
 					<input className={styles.input} type="email" name="email" id="EMAIL" placeholder="Email" Required=""/><br/>
 					<input className={styles.input} type="password" id="PASSWORD" placeholder="Password" Required=""/><br/>
 					<button className={styles.button} type="button" onClick={this.IsValidUser}>Login</button><br/>
+					<button className={styles.button} type="button" onClick={this.ForgotPassword}>Forgot Password</button><br/>
+
 					</form>
 			</div>
 	</div>
