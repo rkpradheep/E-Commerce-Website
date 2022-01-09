@@ -96,7 +96,8 @@ class Admin extends Component{
     }  
     render()
     {
-      
+      if(localStorage.getItem("admin")===null)
+      return <Redirect to="/"/>;
       if(!this.state.isLoggedIn)
         return <Redirect to="/"/>;
       if(this.state.modify)

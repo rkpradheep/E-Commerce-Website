@@ -10,6 +10,14 @@ import C5 from "../C5.jpg"
 import C6 from "../C6.jpg"
 
 const Home=()=>{
+  
+/*
+window.addEventListener('popstate',(event)=>{
+   )
+}*/
+  
+
+
 return( 
   <div> 
     <div className={styles.main}>    

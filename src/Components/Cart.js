@@ -196,6 +196,8 @@ cartListEl = document.getElementById('cartList');
 
 
     render(){
+        if(localStorage.getItem("name")===null)
+        return <Redirect to="/"/>;
         if(this.state.checkout)
         return <Redirect to="/checkout" />
      $(document).ready(()=>{this.pp()} )

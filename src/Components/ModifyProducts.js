@@ -19,6 +19,9 @@ class MofifyProducts extends Component {
     }
    
     render(){
+        if(localStorage.getItem("admin")===null)
+        return <Redirect to="/"/>;
+
         $(document).ready(()=>{this.pp()} )
     return (
         

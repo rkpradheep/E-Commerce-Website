@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from "../firebase";
 import "@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css";
 import Navigation from './Navigation';
+import { Redirect } from 'react-router';
 import {
     EditingState,
     IntegratedFiltering,
@@ -117,6 +118,8 @@ import styles from '../Styles/purchasedetails.module.css';
     
      
       render() {
+        if(localStorage.getItem("admin")===null)
+        return <Redirect to="/"/>;
         return (
           <div className={styles.Zoom}>
           <div style={{backgroundColor:"#ede2fa",height:"100%",width:"100%",position:"fixed"}}>
